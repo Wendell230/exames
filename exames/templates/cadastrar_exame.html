@@ -1,0 +1,18 @@
+{% extends "bases/base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="{% static 'exames/css/cadastro_exame.css' %}" rel="stylesheet">
+{% endblock 'head' %}
+
+
+{% block 'conteudo' %}
+
+    <h2>Cadastrar Novo Exame</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Cadastrar Exame</button>
+    </form>
+
+{% endblock 'conteudo' %}

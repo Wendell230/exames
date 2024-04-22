@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate,login
 
 def cadastro(request):
     if request.method == "GET":
-        return render(request, 'cadastro.html')
+        return render(request, 'cadastro.html' ,{'mostrar_menu': False})
     else:
         primeiro_nome = request.POST.get('primeiro_nome')
         ultimo_nome = request.POST.get('ultimo_nome')
@@ -44,7 +44,7 @@ def cadastro(request):
     
 def logar(request):
     if request.method == "GET":
-        return render(request, 'login.html')
+        return render(request, 'login.html', {'mostrar_menu': False})
     else:
         username = request.POST.get('username')
         senha = request.POST.get('senha')
@@ -53,7 +53,8 @@ def logar(request):
 
         if user:
             login(request, user)                        
-            return redirect('/')
+            return redirect('/exames/solicitar_exames')
         else:
             messages.add_message(request, constants.ERROR, 'Usuario ou senha inválidos')
             return redirect('/usuarios/login')
+
